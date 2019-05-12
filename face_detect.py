@@ -1,6 +1,3 @@
-# This script will detect faces via your webcam.
-# Tested with OpenCV3
-
 import cv2
 from time import time
 cap = cv2.VideoCapture(0)
