@@ -1,5 +1,6 @@
 import cv2
-from time import time
+import face_recognition
+
 cap = cv2.VideoCapture(0)
 
 # Create the haar cascade
@@ -8,7 +9,6 @@ faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 frames = []
 
 while(True):
-	time_start = time()
 	# Capture frame-by-frame
 	ret, frame = cap.read()
 
@@ -28,12 +28,10 @@ while(True):
 	# Draw a rectangle around the faces
 	for (x, y, w, h) in faces:
 		cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 1)
-		break #comment break to allow more rectangles
-
-	time_end = time()
+		#break #comment break to allow more rectangles
 
 	# Display the resulting frame and stats
-	print("Found {number} faces at {fps} fps".format(number = len(faces), fps = 1 / (time_end - time_start)))
+	print("Found {0} faces".format(len(faces)))
 	cv2.imshow('frame', frame)
 	
 	# Exit if ESC pressed
